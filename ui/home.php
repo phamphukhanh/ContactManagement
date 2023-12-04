@@ -44,7 +44,7 @@ if (isset($_SESSION["user_info"])) {
     if (isset($_GET['added']) && $_GET['added'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
-            An errors occurred, please try again!
+            An error occurred, please try again!
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
@@ -58,7 +58,7 @@ if (isset($_SESSION["user_info"])) {
     if (isset($_GET['deleted']) && $_GET['deleted'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
-            An errors occurred, please try again!
+            An error occurred, please try again!
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
@@ -72,7 +72,7 @@ if (isset($_SESSION["user_info"])) {
     if (isset($_GET['updated']) && $_GET['updated'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
-            An errors occurred, please try again!
+            An error occurred, please try again!
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
@@ -87,7 +87,7 @@ if (isset($_SESSION["user_info"])) {
     if (isset($_GET['blocked']) && $_GET['blocked'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
-            An errors occurred, please try again!
+            An error occurred, please try again!
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
@@ -102,7 +102,7 @@ if (isset($_SESSION["user_info"])) {
     if (isset($_GET['unblocked']) && $_GET['unblocked'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
-            An errors occurred, please try again!
+            An error occurred, please try again!
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
