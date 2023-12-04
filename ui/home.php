@@ -95,7 +95,6 @@ if (isset($_SESSION["user_info"])) {
         echo
         '<div id="message" class="alert alert-success fixed-bottom" style="margin-top: 60px; z-index: 1031">
             Contact unblocked!
-            <a href="./blocked.php" class="m-2">View</a>
             <button id="close-button" class="close ml-1" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
