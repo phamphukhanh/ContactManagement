@@ -68,6 +68,6 @@ if (isset($_SESSION["user_info"])) {
         echo '</tbody>
         </table>';
     } else {
-        echo "No contacts yet";
+        echo "No contacts yet. <a href='./new_contact.php'>Add a new contact.</a>";
     }
 }
