@@ -7,34 +7,39 @@ $userDAL = new user_dal();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Kiểm tra xem nút "Register" đã được nhấn hay chưa
     if (isset($_POST["register"])) {
-        // Nếu có, lấy các dữ liệu từ form có method POST, đổ vào một đối tượng User
-        $newUser = new User();
-        $newUser->setFirstName($_POST["first_name"]);
-        $newUser->setLastName($_POST["last_name"]);
-        $newUser->setUsername($_POST["new_username"]);
-        // Mã hóa password trước khi lưu vào database
-        $password = $_POST["new_password"];
-        $newUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
-
+        // Lấy giá trị username từ form có method POST
+        $username = $_POST["new_username"];
+        
         /*
             Kiểm tra xem user đã tồn tại hay chưa.
             Ở đây sử dụng lại hàm getUserByEmail().
             Để cụ thể hóa vấn đề và tránh nhầm lẫn, các bạn cũng có thể viết một hàm khác để kiểm tra user đã tồn tại hay chưa.
-        */
-        if ($userDAL->getUserByEmail($newUser->getUsername()) != null) {
-            // Nếu đã tồn tại, chuyển hướng lại trang đăng ký kèm mã thông báo thất bại (số 0).
-            header(
-                "Location: ../ui/register.php?registered=0"
+            */
+            if ($userDAL->getUserByEmail($username) != null) {
+                // Nếu đã tồn tại, chuyển hướng lại trang đăng ký kèm mã thông báo thất bại (số 0).
+                header(
+                    "Location: ../ui/register.php?registered=0"
             );
             exit();
         }
-        // Nếu chưa tồn tại, thêm vào database, kiểm tra điều kiện thêm thành công hay không
-        elseif ($userDAL->insertNewAccount($newUser)) {
-            // Nếu thêm thành công, chuyển hướng đến trang đăng nhập kèm mã thông báo thành công (số 1).
-            header(
-                "Location: ../ui/login.php?registered=1"
-            );
-            exit();
+        // Nếu chưa tồn tại
+        else {
+            // Lấy các dữ liệu từ form có method POST, đổ vào một đối tượng User
+            $newUser = new User();
+            $newUser->setFirstName($_POST["first_name"]);
+            $newUser->setLastName($_POST["last_name"]);
+            $newUser->setUsername($username);
+            // Mã hóa password trước khi lưu vào database
+            $password = $_POST["new_password"];
+            $newUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
+
+            if ($userDAL->insertNewAccount($newUser)) {
+                // Nếu thêm thành công, chuyển hướng đến trang đăng nhập kèm mã thông báo thành công (số 1).
+                header(
+                    "Location: ../ui/login.php?registered=1"
+                );
+                exit();
+            }
         }
     }
 }
