@@ -7,7 +7,7 @@ session_start();
 // Kiểm tra xem có thông tin người dùng không
 if (isset($_SESSION["user_info"])) {
     $user = $_SESSION["user_info"];
-    $displayName = $user->getFirstName();
+    $displayName = $user->getLastName();
 }
 ?>
 
@@ -33,7 +33,7 @@ if (isset($_SESSION["user_info"])) {
 </head>
 
 <body>
-    <!-- Bắt các mã thông báo -->
+    <!-- Bắt các mã thông báo và hiển thị thông báo tương ứng -->
     <?php
     // Thông báo thêm liên hệ thành công (added mang giá trị 1)
     if (isset($_GET['added']) && $_GET['added'] == 1) {

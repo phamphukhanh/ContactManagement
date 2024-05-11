@@ -9,17 +9,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["register"])) {
         // Lấy giá trị username từ form có method POST
         $username = $_POST["new_username"];
-        
+
         /*
             Kiểm tra xem user đã tồn tại hay chưa.
             Ở đây sử dụng lại hàm getUserByEmail().
             Để cụ thể hóa vấn đề và tránh nhầm lẫn, các bạn cũng có thể viết một hàm khác để kiểm tra user đã tồn tại hay chưa.
             */
-            if ($userDAL->getUserByEmail($username) != null) {
-                // Nếu đã tồn tại, chuyển hướng lại trang đăng ký kèm mã thông báo thất bại (số 0).
-                header(
-                    "Location: ../ui/register.php?registered=0"
+        if ($userDAL->getUserByEmail($username) != null) {
+            // Nếu đã tồn tại, chuyển hướng lại trang đăng ký kèm mã thông báo thất bại (số 0).
+            header(
+                "Location: ../ui/register.php?registered=0"
             );
+            // Đóng kết nối database và kết thúc xử lý
+            $user_dal->close();
             exit();
         }
         // Nếu chưa tồn tại
@@ -38,6 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 header(
                     "Location: ../ui/login.php?registered=1"
                 );
+                // Đóng kết nối database và kết thúc xử lý
+                $user_dal->close();
                 exit();
             }
         }
@@ -59,11 +63,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             session_start();
             $_SESSION["user_info"] = $user;
             header("Location: ../ui/home.php");
+            // Đóng kết nối database và kết thúc xử lý
+            $user_dal->close();
             exit();
         } else {
             header(
                 "Location: ../ui/login.php?login=0"
             );
+            // Đóng kết nối database và kết thúc xử lý
+            $user_dal->close();
             exit();
         }
     }
@@ -76,5 +84,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 
     // Chuyển hướng về trang đăng nhập
     header("Location: ../ui/login.php");
+    // Đóng kết nối database và kết thúc xử lý
+    $user_dal->close();
     exit();
 }
