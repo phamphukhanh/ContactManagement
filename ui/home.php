@@ -33,7 +33,9 @@ if (isset($_SESSION["user_info"])) {
 </head>
 
 <body>
+    <!-- Bắt các mã thông báo -->
     <?php
+    // Thông báo thêm liên hệ thành công (added mang giá trị 1)
     if (isset($_GET['added']) && $_GET['added'] == 1) {
         echo
         '<div id="message" class="alert alert-success fixed-bottom">
@@ -41,6 +43,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo thêm liên hệ thất bại (added mang giá trị 0)
     if (isset($_GET['added']) && $_GET['added'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -48,6 +51,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo xóa liên hệ thành công (deleted mang giá trị 1)
     if (isset($_GET['deleted']) && $_GET['deleted'] == 1) {
         echo
         '<div id="message" class="alert alert-success fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -55,6 +59,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo xóa liên hệ thất bại (deleted mang giá trị 0)
     if (isset($_GET['deleted']) && $_GET['deleted'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -62,6 +67,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo cập nhật liên hệ thành công (updated mang giá trị 1)
     if (isset($_GET['updated']) && $_GET['updated'] == 1) {
         echo
         '<div id="message" class="alert alert-success fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -69,6 +75,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo cập nhật liên hệ thất bại (updated mang giá trị 0)
     if (isset($_GET['updated']) && $_GET['updated'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -76,6 +83,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo chặn liên hệ thành công (blocked mang giá trị 1)
     if (isset($_GET['blocked']) && $_GET['blocked'] == 1) {
         echo
         '<div id="message" class="alert alert-success fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -84,6 +92,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close ml-1" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo chặn liên hệ thất bại (blocked mang giá trị 0)
     if (isset($_GET['blocked']) && $_GET['blocked'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -91,6 +100,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo mở chặn liên hệ thành công (unblocked mang giá trị 1)
     if (isset($_GET['unblocked']) && $_GET['unblocked'] == 1) {
         echo
         '<div id="message" class="alert alert-success fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -98,6 +108,7 @@ if (isset($_SESSION["user_info"])) {
             <button id="close-button" class="close ml-1" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Thông báo mở chặn liên hệ thất bại (unblocked mang giá trị 0)
     if (isset($_GET['unblocked']) && $_GET['unblocked'] == 0) {
         echo
         '<div id="message" class="alert alert-danger fixed-bottom" style="margin-top: 60px; z-index: 1031">
@@ -132,10 +143,10 @@ if (isset($_SESSION["user_info"])) {
             </ul>
         </div>
     </nav>
-
-
+    <!-- Hiển thị danh sách liên hệ -->
     <div class="container" style="margin-top: 70px;">
         <h2>Your contacts</h2>
+        <!-- Form tìm kiếm -->
         <form method="post" class="form-inline mb-3">
             <div class="form-group">
                 <label for="searchInput" class="sr-only">Search</label>
@@ -143,12 +154,16 @@ if (isset($_SESSION["user_info"])) {
             </div>
             <button name="find" class="btn btn-primary ml-2">Search</button>
         </form>
+
         <?php
+        // Kiểm tra xem có yêu cầu tìm kiếm không
         if (isset($_POST["find"])) {
-            // Nếu có yêu cầu tìm kiếm, chuyển hướng đến trang find_contacts.php
+            // Nếu có yêu cầu tìm kiếm, chuyển hướng đến trang tìm kiếm (find_contacts.php)
             include_once "../bl/find_contacts.php";
-        } else {
-            // Hiển thị danh sách liên hệ mặc định
+        }
+        // Nếu không có yêu cầu tìm kiếm
+        else {
+            // Hiển thị danh sách liên hệ mặc định như bình thường (view_contacts.php)
             include_once "../bl/view_contacts.php";
         }
         ?>
