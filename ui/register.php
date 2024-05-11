@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <!-- Bắt mã thông báo để hiển thị thông báo tương ứng -->
     <?php
     if (isset($_GET['registered']) && $_GET['registered'] == 0) {
         echo
@@ -61,7 +62,7 @@
                         </form>
                     </div>
                     <div class="card-footer">
-                        Already have an account? <a href="login.php">Login</a>
+                        Already had an account? <a href="login.php">Login</a>
                     </div>
                 </div>
             </div>
