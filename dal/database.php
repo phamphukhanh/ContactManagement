@@ -9,4 +9,9 @@ class database
             die("Connection failed: " . $this->con->connect_error);
         }
     }
+
+    function close()
+    {
+        $this->con->close();
+    }
 }
