@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -46,7 +47,14 @@
 
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                <input type="password" class="form-control" name="new_password" id="new_password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="new_password" id="new_password" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
 
                             <button name="register" class="btn btn-success btn-block">Register</button>
@@ -60,6 +68,26 @@
         </div>
     </div>
     <script>
+        // Xử lý sự kiện ẩn/hiện password
+        document.addEventListener("DOMContentLoaded", function() {
+            var passwordInput = document.getElementById("new_password");
+            var toggleButton = document.querySelector(".input-group-text");
+            var toggleIcon = toggleButton.querySelector("i");
+
+            toggleButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                if (passwordInput.getAttribute("type") === "text") {
+                    passwordInput.setAttribute('type', 'password');
+                    toggleIcon.classList.remove("fa-eye-slash");
+                    toggleIcon.classList.add("fa-eye");
+                } else if (passwordInput.getAttribute("type") === "password") {
+                    passwordInput.setAttribute('type', 'text');
+                    toggleIcon.classList.remove("fa-eye");
+                    toggleIcon.classList.add("fa-eye-slash");
+                }
+            });
+        });
+
         var successMessage = document.getElementById('success-message');
         if (successMessage) {
             successMessage.style.display = 'block';
