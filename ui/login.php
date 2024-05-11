@@ -12,14 +12,18 @@
 </head>
 
 <body>
+    <!-- Bắt các mã thông báo và hiển thị thông báo tương ứng -->
     <?php
+    // Nếu mã thông báo là 0, hiển thị thông báo cho biết tài khoản đã tồn tại
     if (isset($_GET['registered']) && $_GET['registered'] == 1) {
         echo
         '<div id="message" class="alert alert-success">
-            Account created!
-            <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+        Account created successfully!
+        <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
+    // Nếu mã thông báo là 1, hiển thị thông báo cho biết tài khoản đã được tạo thành công
+    else
     if (isset($_GET['login']) && $_GET['login'] == 0) {
         echo
         '<div id="message" class="alert alert-danger">
