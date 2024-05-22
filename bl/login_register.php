@@ -59,14 +59,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $database_password = $userDAL->getUserByEmail($username)->getPassword();
         // Kiểm tra xem password nhập vào có khớp với password trong database hay không
         if (password_verify($password, $database_password)) {
+            // Nếu khớp, lấy thông tin user từ database
             $user = $userDAL->getUserByEmail($username);
+
+            // Bắt đầu session và lưu thông tin user vào session
             session_start();
             $_SESSION["user_info"] = $user;
+
+            // Chuyển hướng về trang chủ
             header("Location: ../ui/home.php");
+            
             // Đóng kết nối database và kết thúc xử lý
             $user_dal->close();
             exit();
         } else {
+            // Nếu không khớp, chuyển hướng lại trang đăng nhập kèm mã thông báo thất bại (số 0).
             header(
                 "Location: ../ui/login.php?login=0"
             );

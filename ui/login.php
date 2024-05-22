@@ -14,7 +14,8 @@
 <body>
     <!-- Bắt các mã thông báo và hiển thị thông báo tương ứng -->
     <?php
-    // Nếu mã thông báo là 0, hiển thị thông báo cho biết tài khoản đã tồn tại
+    
+    // Nếu mã registered là 1, hiển thị thông báo cho biết tài khoản đã được tạo thành công
     if (isset($_GET['registered']) && $_GET['registered'] == 1) {
         echo
         '<div id="message" class="alert alert-success">
@@ -22,8 +23,8 @@
         <button id="close-button" class="close" data-dismiss="alert" aria-label="Close">×</button>
         </div>';
     }
-    // Nếu mã thông báo là 1, hiển thị thông báo cho biết tài khoản đã được tạo thành công
     else
+    // Nếu mã login là 0, hiển thị thông báo cho biết thông tin tài khoản không hợp lệ
     if (isset($_GET['login']) && $_GET['login'] == 0) {
         echo
         '<div id="message" class="alert alert-danger">
@@ -32,6 +33,7 @@
         </div>';
     }
     ?>
+    
     <div class="container p-3" style="height: 200px; width: 460px;">
         <div class="row ">
             <div class="col">
